@@ -3,7 +3,7 @@ from django.contrib import admin
 from groups.models import Group
 
 
+@admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name']
 
-admin.site.register(Group, GroupAdmin)
