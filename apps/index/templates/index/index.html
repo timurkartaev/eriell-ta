@@ -1,4 +1,11 @@
-<h1>Index page</h1>
+{% extends 'index/base.html' %}
 
-<a href="{% url 'report_students_average' %}">Report Student Average</a> <br />
-<a href="{% url 'report_students_average_raw' %}">Report Student Average Raw</a>
+{% block title %}  Report List {% endblock title %}
+
+{% block content %}
+    <h1>Report List Page</h1>
+    <ul>
+        <li><a href="{% url 'marks_by_students_view' %}">Report - Average Makrs by Student</a> <br /></li>
+        <li><a href="{% url 'marks_by_groups_view' %}">Report - Average Marks by Group Raw</a></li>
+    </ul>
+{% endblock content %}
