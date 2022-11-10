@@ -23,14 +23,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from students.views import StudentViewSet
 from marks.views import MarkViewSet, StudentAverageMark, StudentAverageMarkByGroupAndSubject
 from subjects.views import SubjectViewSet
-from groups.viewsets import GroupViewSet
+from groups.api.urls import router as group_router
 
 
 router = routers.DefaultRouter()
 router.register(r'users', StudentViewSet)
 router.register(r'marks', MarkViewSet)
 router.register(r'subjects', SubjectViewSet)
-router.register(r'groups', GroupViewSet)
 
 
 urlpatterns = [
@@ -38,6 +37,7 @@ urlpatterns = [
     path('reports/students/average/', StudentAverageMark.as_view(), name='report_students_average'),
     path('reports/students/average/raw/', StudentAverageMarkByGroupAndSubject.as_view(), name='report_students_average_raw'),
     path('api/', include(router.urls)),
+    path('api/', include(group_router.urls)),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
     path('index/', include('index.urls')),
