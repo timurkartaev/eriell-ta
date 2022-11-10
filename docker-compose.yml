@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./.:/code
+    ports:
+      - 8000:8000
+    networks:
+      - eriell-ta-network
+    environment:
+      DJANGO_SETTINGS_MODULE: 'eriell_ta.settings'
+      C_FORCE_ROOT: 'True'
+
+volumes:
+  eriell-ta-db-valume:
+
+networks:
+  eriell-ta-network:

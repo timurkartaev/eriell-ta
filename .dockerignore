@@ -1,0 +1,29 @@
+# worker
+__pycache__
+**/__pycache__
+tmp
+./docker
+./*.zip
+./*.tar.gz
+
+# 2
+.dockerignore
+Dockerfile
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+coverage.xml
+*,cover
+*.log
+.git
+node_modules
+.python-version
