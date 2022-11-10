@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from students.models import Student
 from groups.models import Group
 from subjects.models import Subject
+from index.constants import VIEW_REPORT_AND_CRUD_PERMISSION_NAME
 
 
 class Mark(models.Model):
@@ -26,5 +27,5 @@ class Mark(models.Model):
         verbose_name = _('Mark')
         verbose_name_plural = _('Marks')
         permissions = [
-            ('eriell_view_report_and_rest', 'Can view report and CRUD Mark')
+            (VIEW_REPORT_AND_CRUD_PERMISSION_NAME, 'Can view report and CRUD Mark')
         ]

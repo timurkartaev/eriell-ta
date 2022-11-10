@@ -33,13 +33,13 @@ router.register(r'subjects', SubjectViewSet)
 
 
 urlpatterns = [
-    path('', auth_view.LoginView.as_view(template_name='index/login.html'), name='login'),
+    path('login/', auth_view.LoginView.as_view(template_name='index/login.html'), name='login'),
     path('reports/students/average/', StudentAverageMark.as_view(), name='report_students_average'),
     path('reports/students/average/raw/', StudentAverageMarkByGroupAndSubject.as_view(), name='report_students_average_raw'),
     path('api/', include(router.urls)),
     path('api/', include(group_router.urls)),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
-    path('index/', include('index.urls')),
+    path('', include('index.urls')),
     path('admin/', admin.site.urls),
 ]
