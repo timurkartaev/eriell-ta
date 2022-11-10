@@ -17,21 +17,22 @@ from django.contrib import admin
 from django.urls import path, include, reverse_lazy
 from django.contrib.auth import views as auth_view
 
-from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
 from marks.api.urls import router as marks_router
 from groups.api.urls import router as groups_router
 from students.api.urls import router as student_router
-
-
-# router = routers.DefaultRouter()
-# router.register(r'subjects', SubjectViewSet)
+from subjects.api.urls import router as subject_router
 
 # Default includes
 urlpatterns = [
-    path('login/', auth_view.LoginView.as_view(template_name='index/login.html'), name='login'),
+    path(
+        'login/',
+        auth_view.LoginView.as_view(template_name='index/login.html'),
+        name='login'
+    ),
+
     path('admin/', admin.site.urls),
 ]
 
@@ -40,6 +41,7 @@ urlpatterns += [
     path('api/', include(groups_router.urls)),
     path('api/', include(marks_router.urls)),
     path('api/', include(student_router.urls)),
+    path('api/', include(subject_router.urls)),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
 ]
