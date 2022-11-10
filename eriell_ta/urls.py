@@ -21,25 +21,33 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from students.views import StudentViewSet
-from marks.views import MarkViewSet, StudentAverageMark, StudentAverageMarkByGroupAndSubject
 from subjects.views import SubjectViewSet
-from groups.api.urls import router as group_router
+
+from groups.api.urls import router as groups_router
+from marks.api.urls import router as marks_router
 
 
 router = routers.DefaultRouter()
 router.register(r'users', StudentViewSet)
-router.register(r'marks', MarkViewSet)
 router.register(r'subjects', SubjectViewSet)
 
 
 urlpatterns = [
     path('login/', auth_view.LoginView.as_view(template_name='index/login.html'), name='login'),
-    path('reports/students/average/', StudentAverageMark.as_view(), name='report_students_average'),
-    path('reports/students/average/raw/', StudentAverageMarkByGroupAndSubject.as_view(), name='report_students_average_raw'),
+    path('admin/', admin.site.urls),
+]
+
+# API only links 
+urlpatterns += [
     path('api/', include(router.urls)),
-    path('api/', include(group_router.urls)),
+    path('api/', include(groups_router.urls)),
+    path('api/', include(marks_router.urls)),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
+]
+
+# Apps includes
+urlpatterns += [
     path('', include('index.urls')),
-    path('admin/', admin.site.urls),
+    path('', include('marks.urls')),
 ]

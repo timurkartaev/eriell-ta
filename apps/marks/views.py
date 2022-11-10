@@ -1,23 +1,18 @@
 from django.db.models import Avg
 
-from rest_framework import viewsets, permissions, views
+from rest_framework import permissions, views
 from rest_framework.response import Response
 
 from marks.models import Mark
-from marks.serializers import MarkSerializer, RawMarkSerializer
-from marks.permissions import CheckReportAndMarkViewPermissions
+from marks.api.serializers import RawMarkSerializer
+from marks.api.permissions import HasReportAndMarkViewPermissions
 
 
-class MarkViewSet(viewsets.ModelViewSet):
-    queryset = Mark.objects.all()
-    serializer_class = MarkSerializer
-    permission_classes  = [
+class AvgMarksByStudentView(views.APIView):
+    permission_classes = [
         permissions.IsAuthenticated,
-        CheckReportAndMarkViewPermissions
+        HasReportAndMarkViewPermissions
     ]
-
-
-class StudentAverageMark(views.APIView):
     
     def get(self, request, format=None):
         marks = Mark.objects.values(
@@ -29,10 +24,10 @@ class StudentAverageMark(views.APIView):
         return Response(marks)
 
 
-class StudentAverageMarkByGroupAndSubject(views.APIView):
+class AvgMarksByGroupView(views.APIView):
     permission_classes = [
         permissions.IsAuthenticated,
-        CheckReportAndMarkViewPermissions
+        HasReportAndMarkViewPermissions
     ]
 
     def get(self, request, format=None):
