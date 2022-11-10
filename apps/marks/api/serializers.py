@@ -7,6 +7,7 @@ class MarkSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Mark
         fields = ('student', 'subject', 'group', 'grade')
+        # depth = 1
 
 
 class RawMarkSerializer(serializers.Serializer):
