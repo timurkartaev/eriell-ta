@@ -1,0 +1,13 @@
+*.pyc
+*.pyo
+*.swp
+*.swo
+.DS_Store
+__pycache__/
+*.pytest_cache/
+*.sublime-*
+.coverage
+.python-version
+testdb*
+/*.zip
+/*.tar.gz
