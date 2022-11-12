@@ -14,6 +14,3 @@ down:
 
 downv:
 	docker-compose -f ./docker-compose.yml down -v
-
-ps:
-	docker-compose -f ./docker-compose.yml ps
